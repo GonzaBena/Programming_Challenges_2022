@@ -12,20 +12,17 @@ package com.atlas.kotlin
  */
 
 fun isBalanced(expression: String): Boolean {
-	val stack = mutableListOf<String>()
-	for (i in expression.replace(" ", "")) {
-		when (i.toString()) {
-			"(", "{", "[" -> stack.add(i.toString())
-			")" -> if (stack.removeLast() != "(") return false
-			"]" -> if (stack.removeLast() != "[") return false
-			"}" -> if (stack.removeLast() != "{") return false
-			
-		}
-	}
-	return true
+  val stack = mutableListOf<String>()
+  for (i in expression.replace(" ", "")) when (i.toString()) {
+    "(", "{", "[" -> stack.add(i.toString())
+    ")" -> if (stack.removeLast() != "(") return false
+    "]" -> if (stack.removeLast() != "[") return false
+    "}" -> if (stack.removeLast() != "{") return false
+  }
+  return true
 }
 
 fun main() {
-	println("{ [ a * ( c + d ) ] - 5 }, ${isBalanced("{ [ a * ( c + d ) ] - 5 }")}")
-	println("{ a * ( c + d ) ] - 5 }, ${isBalanced("{ a * ( c + d ) ] - 5 }")}")
+  println("{ [ a * ( c + d ) ] - 5 }, ${isBalanced("{ [ a * ( c + d ) ] - 5 }")}")
+  println("{ a * ( c + d ) ] - 5 }, ${isBalanced("{ a * ( c + d ) ] - 5 }")}")
 }

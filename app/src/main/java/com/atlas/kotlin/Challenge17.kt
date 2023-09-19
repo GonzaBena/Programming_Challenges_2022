@@ -16,6 +16,36 @@ package com.atlas.kotlin
  * - La función retornará un Boolean que indique si ha superado la carrera.
  * Para ello tiene que realizar la opción correcta en cada tramo de la pista.
  */
-fun race(actions: List<String>): Boolean {
+fun race(actions: List<String>, way: String): Boolean {
+	val length = actions.size
+	if (length > way.length)
+		return false
+	
+	for (i in 0 until length)
+		when (actions[i]) {
+			"run" -> {
+				if (way[i] == '_') {
+					way.replaceRange(i, i + 1, "_")
+				} else {
+					return false
+				}
+			}
+			
+			"jump" -> {
+				if (way[i] == '|') {
+					way.replaceRange(i, i + 1, "|")
+				} else {
+					return false
+				}
+			}
+		}
 	return true
+}
+
+fun main() {
+	val actions = listOf("run", "run", "jump", "run", "jump", "run")
+	val correctWay = "__|_|_"
+	val incorrectWay = "__|_||"
+	println(race(actions, correctWay))
+	println(race(actions, incorrectWay))
 }
